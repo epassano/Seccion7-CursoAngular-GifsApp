@@ -4,10 +4,16 @@ import { SharedModule } from './shared/shared.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BusquedaComponent } from './gifs/busqueda/busqueda.component';
+import { GifsPageComponent } from './gifs/gifs-page/gifs-page.component';
+import { ResultadosComponent } from './gifs/resultados/resultados.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BusquedaComponent,
+    GifsPageComponent,
+    ResultadosComponent
   ],
   imports: [
     BrowserModule,
