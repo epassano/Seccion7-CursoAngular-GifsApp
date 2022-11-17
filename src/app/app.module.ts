@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import {HttpClientModule} from '@angular/common/http'
 import { BrowserModule } from '@angular/platform-browser';
 import { SharedModule } from './shared/shared.module';
 
@@ -17,6 +18,7 @@ import { ResultadosComponent } from './gifs/resultados/resultados.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     SharedModule
   ],
