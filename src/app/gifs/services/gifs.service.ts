@@ -6,27 +6,31 @@ import { Injectable } from '@angular/core';
 })
 export class GifsService {
   private apiKey: string = 'Fd8soQJoAPLLaY6Nia0nFbwmRt62HvFP';
-
   private _historial: string[] = [];
+
+  //Todo cambiar any por su tipo
+  public resultados: any[] = [];
 
   get historial() {
     return [...this._historial];
   }
-  constructor(private http:HttpClient){
+  constructor(private http: HttpClient) {}
 
-  }
-
-  buscarGifs(query: string) {
+  buscarGifs(query: string = '') {
     query = query.trim().toLocaleLowerCase();
 
     if (!this._historial.includes(query)) {
       this._historial.unshift(query);
       this._historial = this._historial.splice(0, 10);
     }
-    
-  this.http.get('https://api.giphy.com/v1/gifs/search?api_key=Fd8soQJoAPLLaY6Nia0nFbwmRt62HvFP&q=dragon ball z&limit=10')
-  .subscribe((resp:any)=>{
-    console.log(resp.data);
-  })
+
+    this.http
+      .get(
+        `https://api.giphy.com/v1/gifs/search?api_key=Fd8soQJoAPLLaY6Nia0nFbwmRt62HvFP&q=dragon ball z&limit=10`
+      )
+      .subscribe((resp: any) => {
+        console.log(resp.data)
+        this.resultados=resp.data;
+      });
   }
 }
