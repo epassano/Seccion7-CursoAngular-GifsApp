@@ -17,6 +17,7 @@ export class GifsService {
   }
   constructor(private http: HttpClient) {
     this._historial=JSON.parse(localStorage.getItem('historial')!)||[]
+    this.resultados=JSON.parse(localStorage.getItem('resultados')!)||[]
     // if(localStorage.getItem('historial')){
     //   this._historial=JSON.parse(localStorage.getItem('historial')!);
     // }
@@ -35,11 +36,12 @@ export class GifsService {
 
     this.http
       .get<SearchGifsResponse>(
-        `https://api.giphy.com/v1/gifs/search?api_key=Fd8soQJoAPLLaY6Nia0nFbwmRt62HvFP&q=dragon ball z&limit=10`
+        `https://api.giphy.com/v1/gifs/search?api_key=Fd8soQJoAPLLaY6Nia0nFbwmRt62HvFP&q=${query}&limit=10`
       )
       .subscribe((resp) => {
         console.log(resp.data)
         this.resultados=resp.data;
+        localStorage.setItem('resultados',JSON.stringify(this.resultados));
       });
   }
 }
